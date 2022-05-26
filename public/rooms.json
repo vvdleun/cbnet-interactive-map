@@ -1,0 +1,850 @@
+{
+	"navActions": {
+		"n": "Walk north",
+		"ne": "Walk north-east",
+		"e": "Walk east",
+		"se": "Walk south-east",
+		"s": "Walk south",
+		"sw": "Walk south-west",
+		"w": "Walk west",
+		"nw": "Walk north-west",
+		"upper_west": "In the upper portion of the screen, walk to the west",
+		"center_west": "In the middle portion of the screen, walk to the west",
+		"lower_west": "In the bottom portion of the screen, walk to the west",
+		"upper_east": "In the upper portion of the screen, walk to the east",
+		"center_east": "In the middle portion of the screen, walk to the east",
+		"lower_east": "In the bottom portion of the screen, walk to the east",
+		"left_south": "In the left part of the screen, walk south",
+		"center_south": "In the middle part of the screen, walk south",
+		"right_south": "In the right part of the screen, walk south",
+		"left_north": "In the left part of the screen, walk north",
+		"center_north": "In the middle part of the screen, walk north",
+		"right_north": "In the right part of the screen, walk north",
+		"move_left_cabinet": "Walk to the left cabinet and type 'MOVE CABINET'",
+		"move_right_cabinet": "Walk to the right cabinet and type 'MOVE CABINET'",
+		"move_clock": "Walk to the grandfather clock and type 'MOVE CLOCK'",
+		"move_mirror": "Walk to the mirror and type 'MOVE MIRROR'",
+		"stairs_up": "Take the stairs that go up",
+		"stairs_down": "Take the stairs that go down",
+		"walk_door": "Walk through the door",
+		"walk_entrance": "Walk through the entrance",
+		"open_door": "Walk to the door and type 'OPEN DOOR'",
+		"open_cellar_door": "Walk to the cellar door and type 'OPEN CELLAR'",
+		"unlock_open_door": "Walk to the door and type 'UNLOCK DOOR' and 'OPEN DOOR'",
+		"elevator_unlock_up": "Walk to the elevator (when available) and type 'INSERT KEY IN CONTROL' and 'PRESS UP'",
+		"elevator_up": "Walk to the elevator (when available) and type 'PRESS UP'",
+		"elevator_down": "Walk to the elevator (when available) and type 'PRESS DOWN'"
+	},
+	"rooms": {
+		"1": {
+			"title": "Dock",
+			"nav": {
+				"n": {
+					"target": "28"
+				}
+			}
+		},
+		"2": {
+			"title": "Graveyard",
+			"nav": {
+				"e": {
+					"target": "9"
+				}
+			}
+		},
+		"3": {
+			"title": "Bell tower",
+			"nav": {
+				"e": {
+					"target": "10"
+				},
+				"s": {
+					"target": "14"
+				},
+				"w": {
+					"target": "9"
+				}
+			}
+		},
+		"4": {
+			"title": "Rose arbor/garden-back",
+			"nav": {
+				"n": {
+					"target": "5"
+				},
+				"e": {
+					"target": "12"
+				},
+				"s": {
+					"target": "33"
+				},
+				"w": {
+					"target": "10"
+				}
+			}
+		},
+		"5": {
+			"title": "Garden",
+			"nav": {
+				"s": {
+					"target": "4"
+				}
+			}
+		},
+		"6": {
+			"title": "Outside Celie's shack",
+			"nav": {
+				"e": {
+					"target": "7"
+				},
+				"w": {
+					"target": "12"
+				},
+				"s": {
+					"target": "18"
+				}
+			}
+		},
+		"7": {
+			"title": "Broken bridge (swamp)",
+			"nav": {
+				"s": {
+					"target": "8"
+				},
+				"w": {
+					"target": "6"
+				}
+			}
+		},
+		"8": {
+			"title": "Misty bayou waters (alligators)",
+			"nav": {
+				"n": {
+					"target": "7"
+				},
+				"w": {
+					"target": "24"
+				},
+				"s": {
+					"target": "30"
+				}
+			}
+		},
+		"9": {
+			"title": "Chapel (outside)",
+			"nav": {
+				"e": {
+					"target": "3"
+				},
+				"upper_west": {
+					"target": "2"
+				},
+				"walk_door": {
+					"target": "58"
+				}
+			}
+		},
+		"10": {
+			"title": "North-west corner of the mansion (outside Study)",
+			"nav": {
+				"s": {
+					"target": "21"
+				},
+				"center_west": {
+					"target": "14"
+				},
+				"upper_east": {
+					"target": "4"
+				},
+				"lower_east": {
+					"target": "15"
+				},
+				"lower_west": {
+					"target": "14"
+				},
+				"upper_west": {
+					"target": "3"
+				},
+				"walk_door": {
+					"target": "31"
+				}
+			}
+		},
+		"12": {
+			"title": "North-east corner of the mansion (outside Kitchen)",
+			"nav": {
+				"s": {
+					"target": "23"
+				},
+				"center_east": {
+					"target": "18"
+				},
+				"upper_east": {
+					"target": "6"
+				},
+				"lower_west": {
+					"target": "17"
+				},
+				"upper_west": {
+					"target": "4"
+				},
+				"walk_door": {
+					"target": "35"
+				},
+				"open_cellar_door": {
+					"target": "53"
+				}
+			}
+		},
+		"13": {
+			"title": "Outside stable",
+			"nav": {
+				"lower_east": {
+					"target": "21"
+				},
+				"center_east": {
+					"target": "14"
+				},
+				"left_south": {
+					"target": "25"
+				},
+				"right_south": {
+					"target": "20"
+				},
+				"walk_door": {
+					"target": "69"
+				}
+			}
+		},
+		"14": {
+			"title": "Outside playhouse",
+			"nav": {
+				"e": {
+					"target": "10"
+				},
+				"w": {
+					"target": "13"
+				},
+				"left_south": {
+					"target": "20"
+				},
+				"right_south": {
+					"target": "21"
+				},
+				"open_door": {
+					"target": "63"
+				}
+			}
+		},
+		"15": {
+			"title": "South-west corner of the mansion (outside Billiard/Music Room)",
+			"nav": {
+				"e": {
+					"target": "16"
+				},
+				"walk_door": {
+					"target": "36"
+				}
+			}
+		},
+		"16": {
+			"title": "Front of house (Front door)",
+			"nav": {
+				"e": {
+					"target": "17"
+				},
+				"s": {
+					"target": "22"
+				},
+				"w": {
+					"target": "15"
+				},
+				"walk_door": {
+					"target": "37"
+				}
+			}
+		},
+		"17": {
+			"title": "South-east corner of the mansion (outside Parlor/Bar)",
+			"nav": {
+				"upper-east": {
+					"target": "12"
+				},
+				"center-east": {
+					"target": "18"
+				},
+				"lower_west": {
+					"target": "16"
+				},
+				"walk_door": {
+					"target": "38"
+				}
+			}
+		},
+		"18": {
+			"title": "Outside hedge garden",
+			"nav": {
+				"e": {
+					"target": "8"
+				},
+				"left_north": {
+					"target": "6"
+				},
+				"center_west": {
+					"target": "12"
+				},
+				"lower_west": {
+					"target": "17"
+				},
+				"left_south": {
+					"target": "23"
+				},
+				"center_south": {
+					"target": "24"
+				},
+				"walk_entrance": {
+					"target": "65"
+				}
+			}
+		},
+		"20": {
+			"title": "Outside carriage house",
+			"nav": {
+				"w": {
+					"target": "13"
+				},
+				"left_south": {
+					"target": "25"
+				},
+				"right_south": {
+					"target": "26"
+				},
+				"walk_door": {
+					"target": "61"
+				}
+			}
+		},
+		"21": {
+			"title": "West side of the circular gravel driveway (before playhouse)",
+			"nav": {
+				"e": {
+					"target": "22"
+				},
+				"center_west": {
+					"target": "13"
+				},
+				"lower_west": {
+					"target": "20"
+				},
+				"left_north": {
+					"target": "14"
+				},
+				"right_north": {
+					"target": "10"
+				}			
+			}
+		},
+		"22": {
+			"title": "Center circular gravel driveway (house view)",
+			"nav": {
+				"n": {
+					"target": "16"
+				},
+				"e": {
+					"target": "23"
+				},
+				"s": {
+					"target": "28"
+				},
+				"w": {
+					"target": "21"
+				}
+			}
+		},
+		"23": {
+			"title": "East side of the circular gravel driveway (Well)",
+			"nav": {
+				"n": {
+					"target": "12"
+				},
+				"ne": {
+					"target": "18"
+				},
+				"e": {
+					"target": "24"
+				},
+				"s": {
+					"target": "29"
+				},
+				"w": {
+					"target": "22"
+				},
+				"nw": {
+					"target": "12"
+				}
+			}
+		},
+		"24": {
+			"title" : "Gazebo",
+			"nav": {
+				"n": {
+					"target": "18"
+				},
+				"e": {
+					"target": "8"
+				},
+				"s": {
+					"target": "29"
+				}
+			}
+		},
+		"25": {
+			"title": "South-west edge of the bayou island",
+			"nav": {
+				"e": {
+					"target": "26"
+				},
+				"ne": {
+					"target": "20"
+				},
+				"nw": {
+					"target": "13"
+				}
+			}
+		},
+		"26": {
+			"title": "South edge of the bayou island (before carriage house)",
+			"nav": {
+				"n": {
+					"target": "20"
+				},
+				"e": {
+					"target": "27"
+				},
+				"w": {
+					"target": "25"
+				}
+			}		
+		},
+		"27": {
+			"title": "South edge of the bayou island (Before west edge of the main circular driveway)",
+			"nav": {
+				"n": {
+					"target": "21"
+				},
+				"e": {
+					"target": "28"
+				},
+				"w": {
+					"target": "26"
+				}
+			}
+		},
+		"28": {
+			"title": "South edge center of the bayou island (Misty Acres entrance)",
+			"nav": {
+				"n": {
+					"target": "22"
+				},
+				"e": {
+					"target": "29"
+				},
+				"s": {
+					"target": "1"
+				},
+				"w": {
+					"target": "27"
+				}
+			}
+		},
+		"29": {
+			"title": "South edge of the bayou island (Before east edge of the main circular driveway)",
+			"nav": {
+				"n": {
+					"target": "23"
+				},
+				"ne": {
+					"target": "24"
+				},
+				"e": {
+					"target": "30"
+				},
+				"w": {
+					"target": "28"
+				}
+			}
+		},
+		"30": {
+			"title": "Southeast edge of the bayou island (swamp)",
+			"nav": {
+				"ne": {
+					"target": "8"
+				},
+				"nw": {
+					"target": "24"
+				},
+				"w": {
+					"target": "29"
+				}
+			}
+		},
+		"31": {
+			"title": "Study/Gun Room",
+			"nav": {
+				"e": {
+					"target": "32"
+				},
+				"w": {
+					"target": "10"
+				}
+			}
+		},
+		"32": {
+			"title": "Library",
+			"nav": {
+				"e": {
+					"target": "33"
+				},
+				"w": {
+					"target": "31"
+				}
+			}
+		},
+		"33": {
+			"title": "Back downstairs hallway",
+			"nav": {
+				"e": {
+					"target": "34"
+				},
+				"w": {
+					"target": "32"
+				},
+				"s": {
+					"target": "37"
+				},
+				"walk_door": {
+					"target": "4"
+				},
+				"move_clock": {
+					"target": "40b"
+				},
+				"move_mirror": {
+					"target": "39b"
+				}
+			}
+		},
+		"34": {
+			"title": "Dinning Room",
+			"nav": {
+				"e": {
+					"target": "35"
+				},
+				"w": {
+					"target": "33"
+				}
+			}
+		},
+		"35": {
+			"title": "Kitchen",
+			"nav": {
+				"w": {
+					"target": "34"
+				},
+				"walk_door": {
+					"target": "12"
+				}
+			}
+		},
+		"36": {
+			"title": "Billiard/Music Room",
+			"nav": {
+				"e": {
+					"target": "37"
+				},
+				"walk_door": {
+					"target": "15"
+				}
+			}
+		},
+		"37": {
+			"title": "Front downstairs hallway (Grand stairway)",
+			"nav": {
+				"n": {
+					"target": "33"
+				},
+				"e": {
+					"target": "38"
+				},
+				"w": {
+					"target": "36"
+				},
+				"stairs_up": {
+					"target": "47"
+				}
+			}
+		},
+		"38": {
+			"title": "Parlor/Bar",
+			"nav": {
+				"e": {
+					"target": "17"
+				},
+				"w": {
+					"target": "37"
+				}
+			}
+		},
+		"39a": {
+			"title": "Hidden room (Upstairs hallway back, east)",
+			"nav": {
+				"w": {
+					"target": "43"
+				}
+			},
+			"spoiler": true
+		},
+		"39b": {
+			"title": "Hidden room (Downstairs hallway back, east)",
+			"nav": {
+				"w": {
+					"target": "33"
+				}
+			},
+			"spoiler": true
+		},
+		"40a": {
+			"title": "Hidden room (Upstairs hallway back, west)",
+			"nav": {
+				"e": {
+					"target": "43"
+				}
+			},
+			"spoiler": true
+		},
+		"40b": {
+			"title": "Hidden Room (Downstairs hallway back, west)",
+			"nav": {
+				"e": {
+					"target": "33"
+				}
+			},
+			"spoiler": true
+		},
+		"41": {
+			"title": "Wilbur's bedroom",
+			"nav": {
+				"e": {
+					"target": "42"
+				}
+			}
+		},
+		"42": {
+			"title": "Colonel's bedroom",
+			"nav": {
+				"e": {
+					"target": "43"
+				},
+				"w": {
+					"target": "41"
+				},
+				"elevator_unlock_up": {
+					"target": "75"
+				}
+			}
+		},
+		"43": {
+			"title": "Upstairs hallway back",
+			"nav": {
+				"n": {
+					"target": "73"
+				},
+				"e": {
+					"target": "44"
+				},
+				"s": {
+					"target": "47"
+				},
+				"w": {
+					"target": "42"
+				},
+				"move_left_cabinet": {
+					"target": "40a"
+				},
+				"move_right_cabinet": {
+					"target": "39a"
+				}
+			}
+		},
+		"44": {
+			"title": "Lillian and Laura's bedroom",
+			"nav": {
+				"e": {
+					"target": "45"
+				},
+				"w": {
+					"target": "43"
+				}
+			}
+		},
+		"45": {
+			"title": "Ethel's bedroom",
+			"nav": {
+				"w": {
+					"target": "44"
+				}
+			}
+		},
+		"46": {
+			"title": "Gloria's and Gertie's bedroom",
+			"nav": {
+				"e": {
+					"target": "47"
+				}
+			}
+		},
+		"47": {
+			"title": "Upstairs Hall forward",
+			"nav": {
+				"n": {
+					"target": "43"
+				},
+				"e": {
+					"target": "48"
+				},
+				"w": {
+					"target": "46"
+				},
+				"stairs_up": {
+					"target": "74a"
+				},
+				"stairs_down": {
+					"target": "37"
+				}
+			}
+		},
+		"48": {
+			"title": "Rudy and Clarence's bedroom",
+			"nav": {
+				"w": {
+					"target": "47"
+				}
+			}
+		},
+		"53": {
+			"title": "Cellar",
+			"nav": {
+				"stairs_up": {
+					"target": "12"
+				}
+			},
+			"spoiler": true
+		},
+		"58": {
+			"title": "Chapel (inside)",
+			"nav": {
+				"walk_door": {
+					"target": "9"
+				}
+			}
+		},
+		"61": {
+			"title": "Carriage House (inside)",
+			"nav": {
+				"s": {
+					"target": "20"
+				}
+			}
+		},
+		"63": {
+			"title": "Playhouse (inside)",
+			"nav": {
+				"se": {
+					"target": "14"
+				}
+			},
+			"spoiler": true
+		},
+		"65": {
+			"title": "Hedge garden",
+			"nav": {
+				"s": {
+					"target": "18"
+				}
+			}
+		},
+		"69": {
+			"title": "Stable (inside)",
+			"nav": {
+				"se": {
+					"target": "13"
+				}
+			}
+		},
+		"73": {
+			"title": "Upstairs bathroom",
+			"nav": {
+				"s": {
+					"target": "43"
+				}
+			}
+		},
+		"74a": {
+			"title": "Third level/attic entrance",
+			"nav": {
+				"e": {
+					"target": "74b"
+				},
+				"stairs_down": {
+					"target": "47"
+				}
+			}
+		},
+		"74b": {
+			"title": "Fifi's bedroom",
+			"nav": {
+				"w": {
+					"target": "74a"
+				}
+			}
+		},
+		"74c": {
+			"title": "Third level/attic entrance (behind door)",
+			"nav": {
+				"n": {
+					"target": "75"
+				},
+				"w": {
+					"target": "76"
+				},
+				"unlock_open_door": {
+					"target": "74a"
+				}
+			},
+			"spoiler": true
+		},
+		"75": {
+			"title": "Attic (center)",
+			"nav": {
+				"s": {
+					"target": "76"
+				},
+				"elevator_down": {
+					"target": "42"
+				}
+			},
+			"spoiler": true
+		},
+		"76": {
+			"title": "Attic (storage)",
+			"nav": {
+				"n": {
+					"target": "75"
+				},
+				"e": {
+					"target": "74c"
+				}
+			},
+			"spoiler": true
+		}
+	}
+}
