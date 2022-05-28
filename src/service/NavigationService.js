@@ -43,7 +43,7 @@ const findPath = function(rooms, startRoom, endRoom) {
 
 		// Keep track of both the destination room and the navigation action required to get there
 		visited[room] = {"room": lastRoom, "nav": lastNav};
-		if(room == endRoom) {
+		if(room === endRoom) {
 			return true;
 		}
 
@@ -79,7 +79,7 @@ const findPath = function(rooms, startRoom, endRoom) {
 }
 
 const describePath = function(path, roomData, actionData) {
-	if(path.length == 0) {
+	if(!path.length) {
 		return;
 	}
 
@@ -103,4 +103,10 @@ const createAction = function(roomData, roomId, action) {
 	return { roomId, room: roomData[roomId].title, action };
 }
 
-export default findAndDescribePath;
+const NavigationService = {
+	findPath: function(startRoom, endRoom, roomData, actionData) {
+		return findAndDescribePath(startRoom, endRoom, roomData, actionData);
+	}
+}
+
+export default NavigationService

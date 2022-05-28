@@ -7,12 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import findAndDescribePath from './include/find_path.js';
-
-function RoomFinder(props) {
-	// TODO: split this component in two: one for calcualting path and one for rendering the result
-	const path = findAndDescribePath(props.startRoom, props.endRoom, props.roomData, props.actionData) || [];
-
+function NavigationResult({ path }) {
 	return (
 		<TableContainer component={Paper}>
 			<Table aria-label="Navigation Path">
@@ -39,4 +34,4 @@ function RoomFinder(props) {
 	);
 }
 
-export default RoomFinder;
+export default NavigationResult;

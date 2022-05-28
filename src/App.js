@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import LocationDropdown from './LocationDropdown.js';
-import RoomFinder from './RoomFinder.js';
+import NavigationResult from './NavigationResult.js';
+
+import NavigationService from './service/NavigationService.js';
 
 function App() {
 	const [error, setError] = useState(null);
@@ -12,7 +14,9 @@ function App() {
 
 	const [startRoomId, setStartRoomId] = useState('');
 	const [endRoomId, setEndRoomId] = useState('');
+	const [path, setPath] = useState({});
 
+	// Load data
 	useEffect(() => {
 		fetch("rooms.json")
 			.then(res => res.json())
@@ -28,6 +32,12 @@ function App() {
 				setError(error);
 			})
 	}, []); // Ensures that this effect only runs once!
+
+	// Input data changed, let's help Laura navigate across the estate.
+	useEffect(() => {
+		const p = NavigationService.findPath(startRoomId, endRoomId, roomData, actionData) || [];
+		setPath(p);
+	}, [startRoomId, endRoomId, roomData, actionData]);
 
 	// Render
 	if (error) {
@@ -49,12 +59,7 @@ function App() {
 					roomList={roomList}
 					onChange={(event, item) => setEndRoomId(item ? item.id : null)}
 				/>
-				<RoomFinder
-					startRoom={startRoomId}
-					endRoom={endRoomId}
-					roomData={roomData}
-					actionData={actionData}
-				/>
+				<NavigationResult path={path} />
 			</div>
 		);
 	}
