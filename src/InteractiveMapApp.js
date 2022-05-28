@@ -5,34 +5,35 @@ import NavigationResult from './NavigationResult.js';
 
 import NavigationService from './service/NavigationService.js';
 
-function App() {
+function InteractiveMapApp({ url, name }) {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [roomList, setRoomList] = useState([]);
 
-	const [startRoomId, setStartRoomId] = useState('');
-	const [endRoomId, setEndRoomId] = useState('');
+	const [startRoomId, setStartRoomId] = useState(null);
+	const [endRoomId, setEndRoomId] = useState(null);
 	const [path, setPath] = useState({});
 
 	const navigationServiceRef = useRef(null);
 
 	// Load data
 	useEffect(() => {
-		fetch("rooms.json")
+		fetch(url)
 			.then(res => res.json())
 			.then(result => {
 				setIsLoaded(true);
 
-				setRoomList(createRoomList(result.rooms));				
-				navigationServiceRef.current = new NavigationService(result.rooms, result.navActions);
+				setRoomList(createRoomList(result.rooms));	
+				
+				navigationServiceRef.current = new NavigationService(name, result.rooms, result.navActions);
 			},
 			(error) => {
 				setIsLoaded(true);
 				setError(error);
 			})
-	}, []); // Ensures that this effect only runs once!
+	}, [url, name]);
 
-	// Input data changed, let's help Laura navigate across the estate.
+	// Start/end room was updated, let's help Laura navigate across the estate.
 	useEffect(() => {
 		var p = null;
 		if(startRoomId && endRoomId && navigationServiceRef.current) {
@@ -74,4 +75,4 @@ const createRoomList = function(rooms) {
 			.sort((a, b) => (a.label > b.label ? 1 : (b.label > a.label) ? -1 : 0));
 }
 
-export default App;
+export default InteractiveMapApp;

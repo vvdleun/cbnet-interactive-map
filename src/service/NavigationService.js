@@ -2,20 +2,20 @@
 // which I found after watching video https://www.youtube.com/watch?v=rbYxbIMOZkE
 // Any bugs, issues, etc. should be blamed on /me, however!
 
-const LAURA_ARRIVED = 'Laura arrived at the destination.';
+const ARRIVED_SUFFIX = ' arrived at the destination.';
 
-const findAndDescribePath = function(startRoom, endRoom, roomData, actionData) {
+// Implementation methods
+
+const findAndDescribePath = function(startRoom, endRoom, name, roomData, actionData) {
 	const path = findPath(roomData, startRoom, endRoom);
 	if(!path) {
 		return [];
 	}
 
-	const actions = describePath(path, roomData, actionData);
+	const actions = describePath(path, name, roomData, actionData);
 
 	return actions;
 }
-
-// Helper methods
 
 const findPath = function(rooms, startRoom, endRoom) {
 	if(!rooms || !startRoom || !endRoom) {
@@ -78,13 +78,14 @@ const findPath = function(rooms, startRoom, endRoom) {
 	return backtracedPath;
 }
 
-const describePath = function(path, roomData, actionData) {
+const describePath = function(path, ego, roomData, actionData) {
 	if(!path.length) {
-		return;
+		return [];
 	}
 
 	const pathList = [];
 	
+	// The action to get from current room to the next room, is stored in the next room's element!
 	for(var i = 0; i < path.length - 1; i++) {
 		const roomId = path[i].room;
 		const action = path[i + 1].nav;
@@ -93,8 +94,9 @@ const describePath = function(path, roomData, actionData) {
 
 		pathList.push(createAction(roomData, roomId, actionText));
 	}
+	// Last action always is: ego arrived
 	const roomId = path[path.length - 1].room;
-	pathList.push(createAction(roomData, roomId, LAURA_ARRIVED));
+	pathList.push(createAction(roomData, roomId, ego + ARRIVED_SUFFIX));
 
 	return pathList;
 }
@@ -103,12 +105,15 @@ const createAction = function(roomData, roomId, action) {
 	return { roomId, room: roomData[roomId].title, action };
 }
 
-const NavigationService = function(roomData, actionData) {
+// Service constructor
+
+const NavigationService = function(name, roomData, actionData) {
+	this.name = name;
 	this.roomData = roomData;
 	this.actionData = actionData;
 
 	this.findPath = function(startRoom, endRoom) {
-		return findAndDescribePath(startRoom, endRoom, this.roomData, this.actionData);
+		return findAndDescribePath(startRoom, endRoom, this.name, this.roomData, this.actionData);
 	}
 }
 
