@@ -2,14 +2,14 @@ import { Autocomplete, TextField } from '@mui/material';
 
 import './LocationDropdown.css';
 
-function LocationDropdown(props) {
+function LocationDropdown({ id, caption, roomList, onChange }) {
 	return (
 		<div className="location-dropdown">
 			<Autocomplete
-				id={props.id}
-				options={props.roomList}
-				renderInput={(params) => <TextField {...params} label={props.caption} />}
-				onChange={props.onChange}
+				id={id}
+				options={roomList}
+				renderInput={(params) => <TextField {...params} label={caption} />}
+				onChange={onChange}
 			/>
 		</div>
 	);

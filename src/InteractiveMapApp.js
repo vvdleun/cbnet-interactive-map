@@ -4,6 +4,7 @@ import LocationDropdown from './LocationDropdown.js';
 import NavigationResult from './NavigationResult.js';
 
 import NavigationService from './service/NavigationService.js';
+import RoomService from './service/RoomService.js';
 
 function InteractiveMapApp({ url, name }) {
 	const [error, setError] = useState(null);
@@ -16,14 +17,15 @@ function InteractiveMapApp({ url, name }) {
 
 	const navigationServiceRef = useRef(null);
 
-	// Load data
+	// Load and initialize data
 	useEffect(() => {
 		fetch(url)
 			.then(res => res.json())
 			.then(result => {
 				setIsLoaded(true);
 
-				setRoomList(createRoomList(result.rooms));	
+				const roomList = RoomService.createRoomList(result.rooms);
+				setRoomList(roomList);
 				
 				navigationServiceRef.current = new NavigationService(name, result.rooms, result.navActions);
 			},
@@ -67,12 +69,6 @@ function InteractiveMapApp({ url, name }) {
 			</div>
 		);
 	}
-}
-
-const createRoomList = function(rooms) {
-	return Object.entries(rooms)
-			.map(item => { return { id: item[0], "label": item[1].title }; })
-			.sort((a, b) => (a.label > b.label ? 1 : (b.label > a.label) ? -1 : 0));
 }
 
 export default InteractiveMapApp;
