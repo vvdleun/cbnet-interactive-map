@@ -103,9 +103,12 @@ const createAction = function(roomData, roomId, action) {
 	return { roomId, room: roomData[roomId].title, action };
 }
 
-const NavigationService = {
-	findPath: function(startRoom, endRoom, roomData, actionData) {
-		return findAndDescribePath(startRoom, endRoom, roomData, actionData);
+const NavigationService = function(roomData, actionData) {
+	this.roomData = roomData;
+	this.actionData = actionData;
+
+	this.findPath = function(startRoom, endRoom) {
+		return findAndDescribePath(startRoom, endRoom, this.roomData, this.actionData);
 	}
 }
 

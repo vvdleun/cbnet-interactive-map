@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import LocationDropdown from './LocationDropdown.js';
 import NavigationResult from './NavigationResult.js';
@@ -9,12 +9,12 @@ function App() {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [roomList, setRoomList] = useState([]);
-	const [roomData, setRoomData] = useState({});
-	const [actionData, setActionData] = useState({});
 
 	const [startRoomId, setStartRoomId] = useState('');
 	const [endRoomId, setEndRoomId] = useState('');
 	const [path, setPath] = useState({});
+
+	const navigationServiceRef = useRef(null);
 
 	// Load data
 	useEffect(() => {
@@ -23,9 +23,8 @@ function App() {
 			.then(result => {
 				setIsLoaded(true);
 
-				setRoomList(createRoomList(result.rooms));
-				setRoomData(result.rooms);
-				setActionData(result.navActions);
+				setRoomList(createRoomList(result.rooms));				
+				navigationServiceRef.current = new NavigationService(result.rooms, result.navActions);
 			},
 			(error) => {
 				setIsLoaded(true);
@@ -35,9 +34,13 @@ function App() {
 
 	// Input data changed, let's help Laura navigate across the estate.
 	useEffect(() => {
-		const p = NavigationService.findPath(startRoomId, endRoomId, roomData, actionData) || [];
-		setPath(p);
-	}, [startRoomId, endRoomId, roomData, actionData]);
+		var p = null;
+		if(startRoomId && endRoomId && navigationServiceRef.current) {
+			p = navigationServiceRef.current.findPath(startRoomId, endRoomId);
+		}
+		
+		setPath(p || []);
+	}, [startRoomId, endRoomId]);
 
 	// Render
 	if (error) {

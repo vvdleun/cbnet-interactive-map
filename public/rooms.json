@@ -8,12 +8,12 @@
 		"sw": "Walk south-west",
 		"w": "Walk west",
 		"nw": "Walk north-west",
-		"upper_west": "In the upper portion of the screen, walk to the west",
-		"center_west": "In the middle portion of the screen, walk to the west",
-		"lower_west": "In the bottom portion of the screen, walk to the west",
-		"upper_east": "In the upper portion of the screen, walk to the east",
-		"center_east": "In the middle portion of the screen, walk to the east",
-		"lower_east": "In the bottom portion of the screen, walk to the east",
+		"upper_west": "In the upper part of the screen, walk to the west",
+		"center_west": "In the middle part of the screen, walk to the west",
+		"lower_west": "In the bottom part of the screen, walk to the west",
+		"upper_east": "In the upper part of the screen, walk to the east",
+		"center_east": "In the middle part of the screen, walk to the east",
+		"lower_east": "In the bottom part of the screen, walk to the east",
 		"left_south": "In the left part of the screen, walk south",
 		"center_south": "In the middle part of the screen, walk south",
 		"right_south": "In the right part of the screen, walk south",
@@ -267,10 +267,10 @@
 		"17": {
 			"title": "South-east corner of the mansion (outside Parlor/Bar)",
 			"nav": {
-				"upper-east": {
+				"upper_east": {
 					"target": "12"
 				},
-				"center-east": {
+				"center_east": {
 					"target": "18"
 				},
 				"lower_west": {
