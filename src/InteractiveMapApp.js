@@ -9,15 +9,15 @@ import RoomService from './service/RoomService.js';
 function InteractiveMapApp({ url, name }) {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+
+	const navigationServiceRef = useRef(null);
 	const [roomList, setRoomList] = useState([]);
 
 	const [startRoomId, setStartRoomId] = useState(null);
 	const [endRoomId, setEndRoomId] = useState(null);
 	const [path, setPath] = useState({});
 
-	const navigationServiceRef = useRef(null);
-
-	// Load and initialize data
+	// Load data and initialize state
 	useEffect(() => {
 		fetch(url)
 			.then(res => res.json())

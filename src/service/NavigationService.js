@@ -2,9 +2,13 @@
 // which I found after watching video https://www.youtube.com/watch?v=rbYxbIMOZkE
 // Any bugs, issues, etc. should be blamed on /me, however!
 
+// For my contact details, see: https://www.vincentvanderleun.nl
+
 const ARRIVED_SUFFIX = ' arrived at the destination.';
 
 // Implementation methods
+// (as you can probably tell, this code was originally written as a vanilla Javascript function. Only later during the
+//  development process, I decided to export it as a service object)
 
 const findAndDescribePath = function(startRoom, endRoom, name, roomData, actionData) {
 	const path = findPath(roomData, startRoom, endRoom);
@@ -78,7 +82,7 @@ const findPath = function(rooms, startRoom, endRoom) {
 	return backtracedPath;
 }
 
-const describePath = function(path, ego, roomData, actionData) {
+const describePath = function(path, name, roomData, actionData) {
 	if(!path.length) {
 		return [];
 	}
@@ -94,9 +98,9 @@ const describePath = function(path, ego, roomData, actionData) {
 
 		pathList.push(createAction(roomData, roomId, actionText));
 	}
-	// Last action always is: ego arrived
+	// Last action always is: player arrived
 	const roomId = path[path.length - 1].room;
-	pathList.push(createAction(roomData, roomId, ego + ARRIVED_SUFFIX));
+	pathList.push(createAction(roomData, roomId, name + ARRIVED_SUFFIX));
 
 	return pathList;
 }
