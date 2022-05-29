@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
+import FilterOptions from './FilterOptions.js';
 import LocationDropdown from './LocationDropdown.js';
 import NavigationResult from './NavigationResult.js';
 
@@ -11,7 +13,13 @@ function InteractiveMapApp({ url, name }) {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const navigationServiceRef = useRef(null);
+	
+	// Raw room data, containing navigation and metadata on each and every navigable room
+	const [roomData, setRoomData] = useState({});
+	// Filtered list of rooms, converted to JSON objects that can be consumed by LocationDropdown
 	const [roomList, setRoomList] = useState([]);
+
+	const [spoilerFree, setSpoilerFree] = useState(false);
 
 	const [startRoomId, setStartRoomId] = useState(null);
 	const [endRoomId, setEndRoomId] = useState(null);
@@ -24,8 +32,7 @@ function InteractiveMapApp({ url, name }) {
 			.then(result => {
 				setIsLoaded(true);
 
-				const roomList = RoomService.createRoomList(result.rooms);
-				setRoomList(roomList);
+				setRoomData(result.rooms);
 				
 				navigationServiceRef.current = new NavigationService(name, result.rooms, result.navActions);
 			},
@@ -34,6 +41,12 @@ function InteractiveMapApp({ url, name }) {
 				setError(error);
 			})
 	}, [url, name]);
+
+	// Update list of selectable rooms
+	useEffect(() => {
+		const roomList = RoomService.createRoomList(roomData, spoilerFree);
+		setRoomList(roomList);
+	}, [roomData, spoilerFree]);
 
 	// Start/end room was updated, let's help Laura navigate across the estate.
 	useEffect(() => {
@@ -52,21 +65,32 @@ function InteractiveMapApp({ url, name }) {
 		return <div>Loading, please wait...</div>
 	} else {
 		return (
-			<div>
-				<LocationDropdown
-					id="fromLocation"
-					caption="Navigate from"
-					roomList={roomList}
-					onChange={(event, item) => setStartRoomId(item ? item.id : null)}
-				/>
-				<LocationDropdown
-					id="toLocation"
-					caption="Navigate to" 
-					roomList={roomList}
-					onChange={(event, item) => setEndRoomId(item ? item.id : null)}
-				/>
-				<NavigationResult path={path} />
-			</div>
+			<ScopedCssBaseline>
+				<div>
+					<FilterOptions
+						onChangeSpoilerFree={(event) => setSpoilerFree(event.target.checked)}
+					/>
+					<LocationDropdown
+						id="fromLocation"
+						caption="Navigate from"
+						roomList={roomList}
+						onChange={(event, item) => setStartRoomId(item ? item.id : null)}
+						onInputChange={(event, value, reason) => {
+							console.log("Wut A");
+							console.log(event);
+							console.log(reason);
+							console.log(value);
+						}}
+					/>
+					<LocationDropdown
+						id="toLocation"
+						caption="Navigate to" 
+						roomList={roomList}
+						onChange={(event, item) => setEndRoomId(item ? item.id : null)}
+					/>
+					<NavigationResult path={path} />
+				</div>
+			</ScopedCssBaseline>			
 		);
 	}
 }
