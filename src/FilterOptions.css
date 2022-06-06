@@ -1,0 +1,17 @@
+#filterOptions {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#actSelector {
+	width: 4em;
+}
+
+.hidden {
+	display: none;
+}
+
+.not-hidden {
+	display: block;
+}
+

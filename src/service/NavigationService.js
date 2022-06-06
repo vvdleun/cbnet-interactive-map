@@ -10,8 +10,8 @@ const ARRIVED_SUFFIX = ' arrived at the destination.';
 // (as you can probably tell, this code was originally written as a vanilla Javascript function. Only later during the
 //  development process, I decided to export it as a service object)
 
-const findAndDescribePath = function(startRoom, endRoom, name, roomData, actionData) {
-	const path = findPath(roomData, startRoom, endRoom);
+const findAndDescribePath = function(startRoom, endRoom, name, roomData, actionData, spoilerFree, act) {
+	const path = findPath(roomData, startRoom, endRoom, spoilerFree, act);
 	if(!path) {
 		return [];
 	}
@@ -21,7 +21,7 @@ const findAndDescribePath = function(startRoom, endRoom, name, roomData, actionD
 	return actions;
 }
 
-const findPath = function(rooms, startRoom, endRoom) {
+const findPath = function(rooms, startRoom, endRoom, spoilerFree, act) {
 	if(!rooms || !startRoom || !endRoom) {
 		return [];
 	}
@@ -29,7 +29,8 @@ const findPath = function(rooms, startRoom, endRoom) {
 	const queue = [];
 	const visited = {};
 	const maxIterations = 5000;
-
+	const actSelected = act !== '';
+	
 	// console.log('Navigating from "' + rooms[startRoom].title + '" to "' + rooms[endRoom].title + '"');
 
 	queue.push({"room": startRoom, "lastRoom": null, "lastNav": null});
@@ -41,7 +42,7 @@ const findPath = function(rooms, startRoom, endRoom) {
 			throw new Error('Unknown room, last room was: ' + lastRoom + " and last nav: " + lastNav);
 		}
 
-		if(room in visited) {
+		if(room in visited || (spoilerFree && room.spoiler) || (actSelected && room.acts && !room.acts.includes(act))) {
 			return false;
 		}
 
@@ -51,8 +52,16 @@ const findPath = function(rooms, startRoom, endRoom) {
 			return true;
 		}
 
-		for(const nav in rooms[room].nav) {
-			queue.push({ "room": rooms[room].nav[nav].target, "lastRoom": room, "lastNav": nav });
+		const navActionsAndData = Object.entries(rooms[room].nav);
+		for(var i = 0; i < navActionsAndData.length; i++) {
+			const navActionAndData = navActionsAndData[i];
+
+			const nav = navActionAndData[0];
+			const navData = navActionAndData[1];
+			
+			if((!navData.spoiler || !spoilerFree) && (!navData.acts || (actSelected && navData.acts.includes(act)))) {
+				queue.push({ "room": navData.target, "lastRoom": room, "lastNav": nav });
+			}
 		}
 	}
 
@@ -116,8 +125,8 @@ const NavigationService = function(name, roomData, actionData) {
 	this.roomData = roomData;
 	this.actionData = actionData;
 
-	this.findPath = function(startRoom, endRoom) {
-		return findAndDescribePath(startRoom, endRoom, this.name, this.roomData, this.actionData);
+	this.findPath = function(startRoom, endRoom, spoilerFree, act) {
+		return findAndDescribePath(startRoom, endRoom, this.name, this.roomData, this.actionData, spoilerFree, act);
 	}
 }
 

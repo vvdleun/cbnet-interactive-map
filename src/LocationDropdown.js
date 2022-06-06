@@ -8,14 +8,14 @@ function LocationDropdown({ id, caption, roomList, onChange }) {
 
 	useEffect(() => {
 		// This ugly workaround to clear the Autocomplete input value has been borrowed from https://github.com/mui/material-ui/issues/4736
-		// Unf., this can produce a warning in the console if item that is now filtered out was selected
+		// Unf., this produces a warning in the console if item that is now unavailable (filtered out) was selected
 		if(ref.current) {
 			const elm = ref.current.getElementsByClassName('MuiAutocomplete-clearIndicator');
 			if(elm && elm[0] && elm[0].click) {
 				elm[0].click();
 			}
 		}
-	}, [roomList]);
+	}, [roomList])
 
 	return (
 		<div className="location-dropdown">

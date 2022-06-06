@@ -13,7 +13,7 @@
 		"lower_west": "In the bottom part of the screen, walk to the west",
 		"upper_east": "In the upper part of the screen, walk to the east",
 		"center_east": "In the middle part of the screen, walk to the east",
-		"lower_east": "In the bottom part of the screen, walk to the east",
+		"lower_east": "In the bottom part  of the screen, walk to the east",
 		"left_south": "In the left part of the screen, walk south",
 		"center_south": "In the middle part of the screen, walk south",
 		"right_south": "In the right part of the screen, walk south",
@@ -30,6 +30,7 @@
 		"walk_entrance": "Walk through the entrance",
 		"open_door": "Walk to the door and type 'OPEN DOOR'",
 		"open_cellar_door": "Walk to the cellar door and type 'OPEN CELLAR'",
+		"unlock_skeleton_key": "Walk to the door. If the door is closed, type 'UNLOCK DOOR' and 'OPEN DOOR' and walk through the door. This requires the skeleton key. If the door is open, walk through it.",
 		"unlock_open_door": "Walk to the door and type 'UNLOCK DOOR' and 'OPEN DOOR'",
 		"elevator_unlock_up": "Walk to the elevator (when available) and type 'INSERT KEY IN CONTROL' and 'PRESS UP'",
 		"elevator_up": "Walk to the elevator (when available) and type 'PRESS UP'",
@@ -639,7 +640,7 @@
 			}
 		},
 		"42": {
-			"title": "Colonel's bedroom",
+			"title": "Colonel Henri's bedroom",
 			"nav": {
 				"e": {
 					"target": "43"
@@ -648,7 +649,8 @@
 					"target": "41"
 				},
 				"elevator_unlock_up": {
-					"target": "75"
+					"target": "75",
+					"acts": ["4", "6"]
 				}
 			}
 		},
@@ -737,7 +739,8 @@
 					"target": "12"
 				}
 			},
-			"spoiler": true
+			"spoiler": true,
+			"acts": ["2", "3", "4", "5"]
 		},
 		"58": {
 			"title": "Chapel (inside)",
@@ -796,6 +799,11 @@
 				},
 				"stairs_down": {
 					"target": "47"
+				},
+				"unlock_skeleton_key": {
+					"target": "75",
+					"acts": ["8"],
+					"spoiler": true
 				}
 			}
 		},
@@ -820,7 +828,8 @@
 					"target": "74a"
 				}
 			},
-			"spoiler": true
+			"spoiler": true,
+			"acts": ["4", "6"]
 		},
 		"75": {
 			"title": "Attic (center)",
@@ -832,7 +841,8 @@
 					"target": "42"
 				}
 			},
-			"spoiler": true
+			"spoiler": true,
+			"acts": ["4", "6", "8"]
 		},
 		"76": {
 			"title": "Attic (storage)",
@@ -844,7 +854,8 @@
 					"target": "74c"
 				}
 			},
-			"spoiler": true
+			"spoiler": true,
+			"acts": ["4", "6"]
 		}
 	}
 }

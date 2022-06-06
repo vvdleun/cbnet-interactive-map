@@ -20,6 +20,7 @@ function InteractiveMapApp({ url, name }) {
 	const [roomList, setRoomList] = useState([]);
 
 	const [spoilerFree, setSpoilerFree] = useState(false);
+	const [act, setAct] = useState('');
 
 	const [startRoomId, setStartRoomId] = useState(null);
 	const [endRoomId, setEndRoomId] = useState(null);
@@ -44,19 +45,19 @@ function InteractiveMapApp({ url, name }) {
 
 	// Update list of selectable rooms
 	useEffect(() => {
-		const roomList = RoomService.createRoomList(roomData, spoilerFree);
+		const roomList = RoomService.createRoomList(roomData, spoilerFree, act);
 		setRoomList(roomList);
-	}, [roomData, spoilerFree]);
+	}, [roomData, spoilerFree, act]);
 
 	// Start/end room was updated, let's help Laura navigate across the estate.
 	useEffect(() => {
 		var p = null;
 		if(startRoomId && endRoomId && navigationServiceRef.current) {
-			p = navigationServiceRef.current.findPath(startRoomId, endRoomId);
+			p = navigationServiceRef.current.findPath(startRoomId, endRoomId, spoilerFree, act);
 		}
 		
 		setPath(p || []);
-	}, [startRoomId, endRoomId]);
+	}, [startRoomId, endRoomId, spoilerFree, act]);
 
 	// Render
 	if (error) {
@@ -68,19 +69,16 @@ function InteractiveMapApp({ url, name }) {
 			<ScopedCssBaseline>
 				<div>
 					<FilterOptions
+						spoilerFree={spoilerFree}
+						act={act}
 						onChangeSpoilerFree={(event) => setSpoilerFree(event.target.checked)}
+						onChangeAct={(event) => setAct(event.target.value)}
 					/>
 					<LocationDropdown
 						id="fromLocation"
 						caption="Navigate from"
 						roomList={roomList}
 						onChange={(event, item) => setStartRoomId(item ? item.id : null)}
-						onInputChange={(event, value, reason) => {
-							console.log("Wut A");
-							console.log(event);
-							console.log(reason);
-							console.log(value);
-						}}
 					/>
 					<LocationDropdown
 						id="toLocation"
